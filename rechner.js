@@ -52,6 +52,8 @@ document.addEventListener("DOMContentLoaded", () => {
 
     localStorage.setItem("supplementErgebnisse", JSON.stringify(ergebnisse));
 
+    window.location.href = "ergebnisse.html"; // Weiterleitung zur Ergebnisseite
+  
     ergebnisDiv.innerHTML = "<h3>Dein Supplementbedarf:</h3>";
 
     if (ergebnisse.length === 0) {
