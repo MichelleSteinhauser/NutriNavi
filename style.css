@@ -1,3 +1,6 @@
+/* Viewport Meta Tag unbedingt im HTML einfügen! */
+/* <meta name="viewport" content="width=device-width, initial-scale=1.0"> */
+
 /* Grundlegendes Styling */
 body {
   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
@@ -5,12 +8,14 @@ body {
   margin: 0;
   padding: 20px;
   color: #333;
+  font-size: clamp(1rem, 1.5vw, 1.2rem); /* Flexible Schriftgröße */
 }
 
-/* Überschrift */
+/* Überschriften */
 h1, h2, h3 {
   color: #2c3e50;
   margin-bottom: 10px;
+  line-height: 1.2;
 }
 
 /* Container für das Ergebnis */
@@ -21,6 +26,7 @@ h1, h2, h3 {
   border-radius: 8px;
   box-shadow: 0 2px 8px rgba(0,0,0,0.1);
   padding: 20px 30px;
+  box-sizing: border-box;
 }
 
 /* Liste der Supplements */
@@ -51,6 +57,8 @@ h1, h2, h3 {
   font-size: 1.1rem;
   margin-bottom: 8px;
   color: #34495e;
+  gap: 10px;
+  flex-wrap: wrap; /* Ermöglicht Umbruch bei kleinen Breiten */
 }
 
 /* Dropdown Container */
@@ -59,18 +67,21 @@ h1, h2, h3 {
   align-items: center;
   gap: 10px;
   max-width: 350px;
+  width: 100%; /* Damit es flexibel bleibt */
 }
 
 /* Dropdown selbst */
 .alternativen-dropdown {
   flex-grow: 1;
-  padding: 6px 10px;
+  padding: 10px 12px; /* Größere Touchflächen */
   font-size: 1rem;
   border: 1px solid #ccc;
   border-radius: 5px;
   background-color: white;
   cursor: pointer;
   transition: border-color 0.3s ease;
+  min-width: 120px;
+  box-sizing: border-box;
 }
 
 .alternativen-dropdown:hover,
@@ -79,14 +90,16 @@ h1, h2, h3 {
   outline: none;
 }
 
-/* Label für Dropdown (falls genutzt) */
+/* Label für Dropdown */
 .dropdown-label {
   font-size: 0.9rem;
   color: #555;
   white-space: nowrap;
 }
 
-/* Responsive Anpassung für kleinere Bildschirme */
+/* Media Queries für responsives Verhalten */
+
+/* Kleine Smartphones (max-width 480px) */
 @media (max-width: 480px) {
   .ergebnis-container {
     padding: 15px 20px;
@@ -102,5 +115,36 @@ h1, h2, h3 {
   }
   .alternativen-dropdown {
     width: 100%;
+  }
+}
+
+/* Tablets (481px bis 768px) */
+@media (max-width: 768px) {
+  .ergebnis-container {
+    max-width: 90%;
+    padding: 20px;
+  }
+  .alternativen-dropdown-container {
+    max-width: 100%;
+  }
+  .alternativen-dropdown {
+    min-width: 140px;
+  }
+}
+
+/* Kleine Laptops / große Tablets (769px bis 1024px) */
+@media (max-width: 1024px) {
+  .ergebnis-container {
+    max-width: 600px;
+  }
+}
+
+/* Zusätzliche Feinjustierungen bei sehr großen Bildschirmen */
+@media (min-width: 1200px) {
+  body {
+    padding: 40px 100px;
+  }
+  .ergebnis-container {
+    max-width: 800px;
   }
 }
