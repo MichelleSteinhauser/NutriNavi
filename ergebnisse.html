@@ -20,7 +20,7 @@
       ergebnisDiv.innerHTML = "<p>Keine relevanten Supplements gefunden.</p>";
     } else {
       daten.forEach(supp => {
-        ergebnisDiv.innerHTML += <p><strong>${supp.name}:</strong> ${supp.menge} ${supp.einheit}</p>;
+        ergebnisDiv.innerHTML += `<p><strong>${supp.name}:</strong> ${supp.menge} ${supp.einheit}</p>`;
       });
     }
 
@@ -29,10 +29,7 @@
     });
   </script>
 
-  <div id="ergebnisse"></div>
-<script src="ergebnisse.js"></script>
-
-
 </body>
 </html>
+
 
