@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Supplement Ergebnisse</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+  <h1>Dein Supplementbedarf</h1>
+  <div id="ergebnisse"></div>
+  <button id="zurueck">Zurück zum Rechner</button>
+
+  <script>
+    const ergebnisDiv = document.getElementById("ergebnisse");
+    const daten = JSON.parse(localStorage.getItem("supplementErgebnisse"));
+
+    if (!daten || daten.length === 0) {
+      ergebnisDiv.innerHTML = "<p>Keine relevanten Supplements gefunden.</p>";
+    } else {
+      daten.forEach(supp => {
+        ergebnisDiv.innerHTML += `<p><strong>${supp.name}:</strong> ${supp.menge} ${supp.einheit}</p>`;
+      });
+    }
+
+    document.getElementById("zurueck").addEventListener("click", () => {
+      window.location.href = "rechner.html";
+    });
+  </script>
+
+</body>
+</html>

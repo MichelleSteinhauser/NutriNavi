@@ -1,0 +1,106 @@
+/* Grundlegendes Styling */
+body {
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  background-color: #f7f9fc;
+  margin: 0;
+  padding: 20px;
+  color: #333;
+}
+
+/* Überschrift */
+h1, h2, h3 {
+  color: #2c3e50;
+  margin-bottom: 10px;
+}
+
+/* Container für das Ergebnis */
+.ergebnis-container {
+  max-width: 700px;
+  margin: 20px auto;
+  background-color: #fff;
+  border-radius: 8px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+  padding: 20px 30px;
+}
+
+/* Liste der Supplements */
+.supplement-liste {
+  list-style-type: none;
+  padding: 0;
+  margin: 0;
+}
+
+/* Einzelnes Supplement-Item */
+.supplement-item {
+  display: flex;
+  flex-direction: column;
+  border-bottom: 1px solid #e1e4e8;
+  padding: 15px 0;
+}
+
+.supplement-item:last-child {
+  border-bottom: none;
+}
+
+/* Supplement Name und Bedarf in einer Zeile */
+.supplement-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-weight: 600;
+  font-size: 1.1rem;
+  margin-bottom: 8px;
+  color: #34495e;
+}
+
+/* Dropdown Container */
+.alternativen-dropdown-container {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  max-width: 350px;
+}
+
+/* Dropdown selbst */
+.alternativen-dropdown {
+  flex-grow: 1;
+  padding: 6px 10px;
+  font-size: 1rem;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  background-color: white;
+  cursor: pointer;
+  transition: border-color 0.3s ease;
+}
+
+.alternativen-dropdown:hover,
+.alternativen-dropdown:focus {
+  border-color: #2980b9;
+  outline: none;
+}
+
+/* Label für Dropdown (falls genutzt) */
+.dropdown-label {
+  font-size: 0.9rem;
+  color: #555;
+  white-space: nowrap;
+}
+
+/* Responsive Anpassung für kleinere Bildschirme */
+@media (max-width: 480px) {
+  .ergebnis-container {
+    padding: 15px 20px;
+  }
+  .supplement-header {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+  .alternativen-dropdown-container {
+    max-width: 100%;
+    flex-direction: column;
+    align-items: flex-start;
+  }
+  .alternativen-dropdown {
+    width: 100%;
+  }
+}

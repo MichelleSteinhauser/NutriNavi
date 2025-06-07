@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Supplement Rechner</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+  <form id="rechnerForm">
+    <label>Geschlecht:</label>
+    <select name="geschlecht" required>
+      <option value="m">Männlich</option>
+      <option value="w">Weiblich</option>
+    </select>
+
+    <label>Alter:</label>
+    <input type="number" name="alter" min="10" max="100" required>
+
+    <label>Gewicht (kg):</label>
+    <input type="number" name="gewicht" min="30" max="200" required>
+
+    <label>Ernährungsweise:</label>
+    <select name="ernaehrung">
+      <option value="mischkost">Mischkost</option>
+      <option value="vegetarisch">Vegetarisch</option>
+      <option value="vegan">Vegan</option>
+    </select>
+
+    <label>Wie aktiv bist du körperlich?</label>
+    <select name="aktivitaet">
+      <option value="niedrig">Kaum</option>
+      <option value="mittel">Regelmäßig</option>
+      <option value="hoch">Sehr aktiv / Sportlich</option>
+    </select>
+
+    <label>Wie würdest du dein Stresslevel einschätzen?</label>
+    <select name="stress">
+      <option value="false">Wenig / kein Stress</option>
+      <option value="true">Oft gestresst</option>
+    </select>
+
+    <label>Wie gut schläfst du?</label>
+    <select name="schlaf">
+      <option value="gut">Gut</option>
+      <option value="mittel">Mittelmäßig</option>
+      <option value="schlecht">Schlecht</option>
+    </select>
+
+    <label>Wie oft bist du draußen aktiv?</label>
+    <select name="bewegung">
+      <option value="viel">Täglich</option>
+      <option value="mittel">Ein paar Mal die Woche</option>
+      <option value="wenig">Selten / fast nie</option>
+    </select>
+
+    <label>Welche dieser Gruppen treffen auf dich zu?</label><br>
+    <input type="checkbox" name="zielgruppen" value="sportler"> Sportler/in<br>
+    <input type="checkbox" name="zielgruppen" value="senioren"> Senior/in<br>
+    <input type="checkbox" name="zielgruppen" value="veganer"> Veganer/in<br>
+    <input type="checkbox" name="zielgruppen" value="vegetarier"> Vegetarier/in<br>
+    <input type="checkbox" name="zielgruppen" value="bueromensch"> Büromensch<br>
+    <input type="checkbox" name="zielgruppen" value="schueler_studenten"> Schüler/Student/in<br>
+    <input type="checkbox" name="zielgruppen" value="gesundheitsbewusst"> Gesundheitsbewusst<br>
+    <input type="checkbox" name="zielgruppen" value="stressgeplagte"> Stressgeplagt<br>
+    <input type="checkbox" name="zielgruppen" value="schlafgestoerte"> Schlafgestört<br>
+
+    <button type="submit">Bedarf berechnen</button>
+  </form>
+
+<script type="module" src="rechner.js"></script>
+
+  <script type="module" src="rechner.js"></script>
+
+</body>
+</html>
+
