@@ -14,13 +14,13 @@
 
   <script>
     const ergebnisDiv = document.getElementById("ergebnisse");
-    const daten = JSON.parse(localStorage.getItem("supplementErgebnisse")) || [];
+    const daten = JSON.parse(localStorage.getItem("supplementErgebnisse"));
 
-    if (daten.length === 0) {
+    if (!daten || daten.length === 0) {
       ergebnisDiv.innerHTML = "<p>Keine relevanten Supplements gefunden.</p>";
     } else {
       daten.forEach(supp => {
-        ergebnisDiv.innerHTML += `<p><strong>${supp.name}:</strong> ${supp.menge} ${supp.einheit}</p>`;
+        ergebnisDiv.innerHTML += <p><strong>${supp.name}:</strong> ${supp.menge} ${supp.einheit}</p>;
       });
     }
 
@@ -31,3 +31,4 @@
 
 </body>
 </html>
+
