@@ -1,7 +1,6 @@
-import { supplements } from "./supplements.js"; // relativer Pfad anpassen falls nötig
+import { supplements } from "./supplements.js";
 
 function berechneBedarf(user) {
-  // Filtere Supplements nach Zielgruppen des Users
   return Object.values(supplements)
     .filter(supp => supp.zielgruppen.some(zg => user.zielgruppen.includes(zg)))
     .map(supp => {
@@ -17,26 +16,20 @@ function berechneBedarf(user) {
 
 document.addEventListener("DOMContentLoaded", () => {
   const form = document.getElementById("rechnerForm");
-  const ergebnisDiv = document.getElementById("ergebnisse");
 
   form.addEventListener("submit", (e) => {
     e.preventDefault();
 
     const formData = new FormData(form);
+    let zielgruppen = Array.from(form.querySelectorAll("input[name='zielgruppen']:checked"))
+                            .map(el => el.value);
 
-    let zielgruppen = [];
-    form.querySelectorAll("input[name='zielgruppen']:checked").forEach(el => {
-      zielgruppen.push(el.value);
-    });
-
-    // Geschlecht als Zielgruppe ergänzen
     const geschlecht = formData.get("geschlecht");
     if (geschlecht === "m") zielgruppen.push("maenner");
     if (geschlecht === "w") zielgruppen.push("frauen");
 
-    // Falls keine Zielgruppe ausgewählt, nimm alle Zielgruppen
     if (zielgruppen.length === 0) {
-      zielgruppen = [...new Set(Object.values(supplements).flatMap(supp => supp.zielgruppen))];
+      zielgruppen = [...new Set(Object.values(supplements).flatMap(s => s.zielgruppen))];
     }
 
     const user = {
@@ -52,56 +45,7 @@ document.addEventListener("DOMContentLoaded", () => {
     };
 
     const ergebnisse = berechneBedarf(user);
-
-    // Speichere die Ergebnisse im localStorage für die Ergebnisseite
     localStorage.setItem("supplementErgebnisse", JSON.stringify(ergebnisse));
-
-    // Optional: Du kannst hier eine Zwischenausgabe anzeigen oder direkt weiterleiten
-    // window.location.href = "ergebnisse.html";
-
-    ergebnisDiv.innerHTML = "<h3>Dein Supplementbedarf:</h3>";
-
-    if (ergebnisse.length === 0) {
-      ergebnisDiv.innerHTML += "<p>Keine relevanten Supplements gefunden.</p>";
-    } else {
-      ergebnisse.forEach(supp => {
-        let options = "";
-
-        if (supp.lebensmittelAlternativen.length > 0) {
-          supp.lebensmittelAlternativen.forEach(alt => {
-            const benötigtePortionen = supp.menge / alt.mengeProPortion;
-
-            let anzeigeMenge = "";
-
-            if (alt.portionsGroesse.toLowerCase().includes("stück")) {
-              const stueckZahl = Math.ceil(benötigtePortionen);
-              anzeigeMenge = `${stueckZahl} ${alt.portionsGroesse}`;
-            } else {
-              const match = alt.portionsGroesse.match(/([\d,.]+)/);
-              if (match) {
-                const portionGroesseZahl = parseFloat(match[1].replace(",", "."));
-                const gesamtMenge = Math.round(benötigtePortionen * portionGroesseZahl);
-                const einheit = alt.portionsGroesse.replace(match[0], "").trim();
-                anzeigeMenge = `${gesamtMenge} ${einheit}`;
-              } else {
-                anzeigeMenge = alt.portionsGroesse;
-              }
-            }
-
-            options += `<option value="${alt.name}">${anzeigeMenge} ${alt.name}</option>`;
-          });
-        }
-
-        ergebnisDiv.innerHTML += `
-          <div class="supplement-erg" style="margin-bottom: 1em;">
-            <p><strong>${supp.name}:</strong> ${supp.menge} ${supp.einheit}</p>
-            ${options ? `
-              <label for="alt-${supp.name}">Alternative Lebensmittel:</label>
-              <select id="alt-${supp.name}">${options}</select>
-            ` : ""}
-          </div>
-        `;
-      });
-    }
+    window.location.href = "ergebnisse.html";
   });
 });

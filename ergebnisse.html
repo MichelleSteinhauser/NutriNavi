@@ -14,9 +14,9 @@
 
   <script>
     const ergebnisDiv = document.getElementById("ergebnisse");
-    const daten = JSON.parse(localStorage.getItem("supplementErgebnisse"));
+    const daten = JSON.parse(localStorage.getItem("supplementErgebnisse")) || [];
 
-    if (!daten || daten.length === 0) {
+    if (daten.length === 0) {
       ergebnisDiv.innerHTML = "<p>Keine relevanten Supplements gefunden.</p>";
     } else {
       daten.forEach(supp => {

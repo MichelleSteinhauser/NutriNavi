@@ -8,7 +8,9 @@
 </head>
 <body>
 
+  <h1>Supplement Rechner</h1>
   <form id="rechnerForm">
+    <!-- persönliche Angaben -->
     <label>Geschlecht:</label>
     <select name="geschlecht" required>
       <option value="m">Männlich</option>
@@ -21,6 +23,7 @@
     <label>Gewicht (kg):</label>
     <input type="number" name="gewicht" min="30" max="200" required>
 
+    <!-- Lifestyle-Faktoren -->
     <label>Ernährungsweise:</label>
     <select name="ernaehrung">
       <option value="mischkost">Mischkost</option>
@@ -35,13 +38,13 @@
       <option value="hoch">Sehr aktiv / Sportlich</option>
     </select>
 
-    <label>Wie würdest du dein Stresslevel einschätzen?</label>
+    <label>Stresslevel:</label>
     <select name="stress">
       <option value="false">Wenig / kein Stress</option>
       <option value="true">Oft gestresst</option>
     </select>
 
-    <label>Wie gut schläfst du?</label>
+    <label>Schlafqualität:</label>
     <select name="schlaf">
       <option value="gut">Gut</option>
       <option value="mittel">Mittelmäßig</option>
@@ -55,24 +58,24 @@
       <option value="wenig">Selten / fast nie</option>
     </select>
 
-    <label>Welche dieser Gruppen treffen auf dich zu?</label><br>
-    <input type="checkbox" name="zielgruppen" value="sportler"> Sportler/in<br>
-    <input type="checkbox" name="zielgruppen" value="senioren"> Senior/in<br>
-    <input type="checkbox" name="zielgruppen" value="veganer"> Veganer/in<br>
-    <input type="checkbox" name="zielgruppen" value="vegetarier"> Vegetarier/in<br>
-    <input type="checkbox" name="zielgruppen" value="bueromensch"> Büromensch<br>
-    <input type="checkbox" name="zielgruppen" value="schueler_studenten"> Schüler/Student/in<br>
-    <input type="checkbox" name="zielgruppen" value="gesundheitsbewusst"> Gesundheitsbewusst<br>
-    <input type="checkbox" name="zielgruppen" value="stressgeplagte"> Stressgeplagt<br>
-    <input type="checkbox" name="zielgruppen" value="schlafgestoerte"> Schlafgestört<br>
+    <!-- Zielgruppen (Checkboxen) -->
+    <fieldset>
+      <legend>Welche Gruppen treffen auf dich zu?</legend>
+      <label><input type="checkbox" name="zielgruppen" value="sportler"> Sportler/in</label><br>
+      <label><input type="checkbox" name="zielgruppen" value="senioren"> Senior/in</label><br>
+      <label><input type="checkbox" name="zielgruppen" value="veganer"> Veganer/in</label><br>
+      <label><input type="checkbox" name="zielgruppen" value="vegetarier"> Vegetarier/in</label><br>
+      <label><input type="checkbox" name="zielgruppen" value="bueromensch"> Büromensch</label><br>
+      <label><input type="checkbox" name="zielgruppen" value="schueler_studenten"> Schüler/Student/in</label><br>
+      <label><input type="checkbox" name="zielgruppen" value="gesundheitsbewusst"> Gesundheitsbewusst</label><br>
+      <label><input type="checkbox" name="zielgruppen" value="stressgeplagte"> Stressgeplagt</label><br>
+      <label><input type="checkbox" name="zielgruppen" value="schlafgestoerte"> Schlafgestört</label><br>
+    </fieldset>
 
     <button type="submit">Bedarf berechnen</button>
   </form>
 
-<script type="module" src="rechner.js"></script>
-
   <script type="module" src="rechner.js"></script>
-
 </body>
 </html>
 
