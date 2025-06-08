@@ -1,22 +1,20 @@
 document.addEventListener("DOMContentLoaded", () => {
   const ergebnisDiv = document.getElementById("ergebnisse");
 
-  // Lade die gespeicherten Ergebnisse aus localStorage
+  // Ergebnisse aus localStorage laden
   const ergebnisse = JSON.parse(localStorage.getItem("supplementErgebnisse")) || [];
 
-  ergebnisDiv.innerHTML = "<h3>Dein Supplementbedarf:</h3>";
-
   if (ergebnisse.length === 0) {
-    ergebnisDiv.innerHTML += "<p>Keine relevanten Supplements gefunden.</p>";
+    ergebnisDiv.innerHTML = "<p style='text-align:center;'>Keine relevanten Supplements gefunden.</p>";
     return;
   }
 
   ergebnisse.forEach(supp => {
     let options = "";
 
-    if (supp.lebensmittelAlternativen.length > 0) {
-      supp.lebensmittelAlternativen.forEach(alt => {
-        // Berechne benötigte Portionen und Menge (hier vereinfacht, falls im Ergebnis nicht schon berechnet)
+    if (supp.lebensmittelAlternativen && supp.lebensmittelAlternativen.length > 0) {
+      // Nur die ersten 3 Lebensmittel anzeigen
+      supp.lebensmittelAlternativen.slice(0, 3).forEach(alt => {
         const benötigtePortionen = supp.menge / alt.mengeProPortion;
         let anzeigeMenge = "";
 
@@ -27,7 +25,7 @@ document.addEventListener("DOMContentLoaded", () => {
           const match = alt.portionsGroesse.match(/([\d,.]+)/);
           if (match) {
             const portionGroesseZahl = parseFloat(match[1].replace(",", "."));
-            const gesamtMenge = Math.round(benötigtePortionen * portionGroesseZahl);
+            const gesamtMenge = Math.ceil(benötigtePortionen * portionGroesseZahl);
             const einheit = alt.portionsGroesse.replace(match[0], "").trim();
             anzeigeMenge = `${gesamtMenge} ${einheit}`;
           } else {
@@ -35,28 +33,20 @@ document.addEventListener("DOMContentLoaded", () => {
           }
         }
 
-        options += `<option value="${alt.name}">${anzeigeMenge} ${alt.name}</option>`;
+        options += `<option>${anzeigeMenge} ${alt.name}</option>`;
       });
     }
 
     ergebnisDiv.innerHTML += `
-      <div class="supplement-erg" style="margin-bottom: 1em;">
+      <div class="supplement-erg">
         <p><strong>${supp.name}:</strong> ${supp.menge} ${supp.einheit}</p>
         ${options ? `
-          <label for="alt-${supp.name}">Alternative Lebensmittel:</label>
-          <select id="alt-${supp.name}">
+          <label>Alternative Lebensmittel:</label>
+          <select disabled>
             ${options}
           </select>
         ` : ""}
       </div>
     `;
-  });
-
-  // Optional: Event-Listener für die Dropdowns, wenn du z.B. bei Auswahl etwas ändern willst
-  ergebnisDiv.querySelectorAll("select").forEach(select => {
-    select.addEventListener("change", (event) => {
-      console.log("Gewählte Alternative:", event.target.value);
-      // Hier kannst du z.B. eine Anzeige aktualisieren oder andere Logik ausführen
-    });
   });
 });

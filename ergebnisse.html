@@ -16,78 +16,13 @@
 
   <div class="calculator-container">
     <h1>Dein Supplementbedarf</h1>
-    <p class="intro">Kleiner Reminder: Manche der Lebensmittel-Vorschläge klingen vielleicht nach einem XXL-Workout für deinen Magen. 12 Bananen oder 1 Kilo Rindfleisch sind definitiv kein Snack für zwischendurch! Die Alternativen zeigen dir, wie du deinen Supplementbedarf theoretisch auch über natürliche Lebensmittel decken könntest, aber bitte immer mit gesundem Menschenverstand.</p>
-    
+    <p class="intro">
+      Kleiner Reminder: Manche der Lebensmittel-Vorschläge klingen vielleicht nach einem XXL-Workout für deinen Magen. 12 Bananen oder 1 Kilo Rindfleisch sind definitiv kein Snack für zwischendurch! Die Alternativen zeigen dir, wie du deinen Supplementbedarf theoretisch auch über natürliche Lebensmittel decken könntest, aber bitte immer mit gesundem Menschenverstand.
+    </p>
+
     <div id="ergebnisse"></div>
-    
-    <button id="zurueck">Zurück zum Rechner</button>
   </div>
 
-  <script>
-    document.addEventListener("DOMContentLoaded", () => {
-      const ergebnisDiv = document.getElementById("ergebnisse");
-
-      // Lade die gespeicherten Ergebnisse aus localStorage
-      const ergebnisse = JSON.parse(localStorage.getItem("supplementErgebnisse")) || [];
-
-      ergebnisDiv.innerHTML = "<h3 style='text-align:center; margin-bottom: 1rem;'>Dein Supplementbedarf:</h3>";
-
-      if (ergebnisse.length === 0) {
-        ergebnisDiv.innerHTML += "<p style='text-align:center;'>Keine relevanten Supplements gefunden.</p>";
-        return;
-      }
-
-      ergebnisse.forEach(supp => {
-        let options = "";
-
-        if (supp.lebensmittelAlternativen && supp.lebensmittelAlternativen.length > 0) {
-          supp.lebensmittelAlternativen.forEach(alt => {
-            const benötigtePortionen = supp.menge / alt.mengeProPortion;
-            let anzeigeMenge = "";
-
-            if (alt.portionsGroesse.toLowerCase().includes("stück")) {
-              const stueckZahl = Math.ceil(benötigtePortionen);
-              anzeigeMenge = `${stueckZahl} ${alt.portionsGroesse}`;
-            } else {
-              const match = alt.portionsGroesse.match(/([\d,.]+)/);
-              if (match) {
-                const portionGroesseZahl = parseFloat(match[1].replace(",", "."));
-                const gesamtMenge = Math.ceil(benötigtePortionen * portionGroesseZahl);
-                const einheit = alt.portionsGroesse.replace(match[0], "").trim();
-                anzeigeMenge = `${gesamtMenge} ${einheit}`;
-              } else {
-                anzeigeMenge = alt.portionsGroesse;
-              }
-            }
-
-            options += `<option value="${alt.name}">${anzeigeMenge} ${alt.name}</option>`;
-          });
-        }
-
-        ergebnisDiv.innerHTML += `
-          <div class="supplement-erg centered-group" style="margin-bottom: 1.5rem;">
-            <p><strong>${supp.name}:</strong> ${supp.menge} ${supp.einheit}</p>
-            ${options ? `
-              <label for="alt-${supp.name}">Enthält:</label>
-              <select id="alt-${supp.name}">
-                ${options}
-              </select>
-            ` : ""}
-          </div>
-        `;
-      });
-
-      ergebnisDiv.querySelectorAll("select").forEach(select => {
-        select.addEventListener("change", (event) => {
-          console.log("Gewählte Alternative:", event.target.value);
-        });
-      });
-
-      document.getElementById("zurueck").addEventListener("click", () => {
-        window.location.href = "rechner.html";
-      });
-    });
-  </script>
-
+  <script src="ergebnisse.js"></script>
 </body>
 </html>
