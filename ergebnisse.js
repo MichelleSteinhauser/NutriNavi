@@ -1,20 +1,22 @@
 document.addEventListener("DOMContentLoaded", () => {
   const ergebnisDiv = document.getElementById("ergebnisse");
 
-  // Ergebnisse aus localStorage laden
   const ergebnisse = JSON.parse(localStorage.getItem("supplementErgebnisse")) || [];
 
+  ergebnisDiv.innerHTML = "<h3>Dein Supplementbedarf:</h3>";
+
   if (ergebnisse.length === 0) {
-    ergebnisDiv.innerHTML = "<p style='text-align:center;'>Keine relevanten Supplements gefunden.</p>";
+    ergebnisDiv.innerHTML += "<p style='text-align:center;'>Keine relevanten Supplements gefunden.</p>";
     return;
   }
 
   ergebnisse.forEach(supp => {
-    let options = "";
+    let lebensmittelList = "";
 
     if (supp.lebensmittelAlternativen && supp.lebensmittelAlternativen.length > 0) {
-      // Nur die ersten 3 Lebensmittel anzeigen
-      supp.lebensmittelAlternativen.slice(0, 3).forEach(alt => {
+      const firstThree = supp.lebensmittelAlternativen.slice(0, 3);
+
+      firstThree.forEach(alt => {
         const benötigtePortionen = supp.menge / alt.mengeProPortion;
         let anzeigeMenge = "";
 
@@ -33,20 +35,19 @@ document.addEventListener("DOMContentLoaded", () => {
           }
         }
 
-        options += `<option>${anzeigeMenge} ${alt.name}</option>`;
+        lebensmittelList += `<li>${anzeigeMenge} ${alt.name}</li>`;
       });
     }
 
     ergebnisDiv.innerHTML += `
-      <div class="supplement-erg">
+      <div class="supplement-erg" style="margin-bottom: 2rem;">
         <p><strong>${supp.name}:</strong> ${supp.menge} ${supp.einheit}</p>
-        ${options ? `
-          <label>Alternative Lebensmittel:</label>
-          <select disabled>
-            ${options}
-          </select>
-        ` : ""}
+        ${lebensmittelList ? `<ul>${lebensmittelList}</ul>` : ""}
       </div>
     `;
+  });
+
+  document.getElementById("zurueck").addEventListener("click", () => {
+    window.location.href = "rechner.html";
   });
 });
