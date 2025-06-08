@@ -1,0 +1,114 @@
+/* Reset */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  background-color: #121212;
+  color: #e0e0e0;
+  font-family: 'Montserrat', sans-serif;
+  padding: 2rem;
+  text-align: center;
+  /* Kein flex hier, damit Menü und Container untereinander sind */
+  min-height: 100vh;
+  display: block;
+}
+
+.container {
+  max-width: 600px;
+  margin: 0 auto;
+}
+
+/* Menü: horizontal, zentriert, Abstand nach unten */
+.main-nav {
+  display: flex;
+  justify-content: center;
+  gap: 1.5rem;
+  margin-bottom: 3rem; /* Abstand unter Menü */
+  flex-wrap: wrap; /* bei kleinen Bildschirmen Zeilenumbruch */
+}
+
+/* Menü-Buttons */
+.nav-btn {
+  background-color: transparent;
+  border: 2px solid #00d8ff;
+  color: #00d8ff;
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 600;
+  font-size: 1rem;
+  padding: 0.5rem 1.5rem;
+  border-radius: 30px;
+  cursor: pointer;
+  transition: background-color 0.3s ease, color 0.3s ease;
+  min-width: 130px;
+}
+
+.nav-btn:hover {
+  background-color: #00d8ff;
+  color: #121212;
+}
+
+.nav-btn.active {
+  background-color: #00a0cc;
+  color: #121212;
+  border-color: #00a0cc;
+}
+
+/* Überschrift */
+h1 {
+  font-weight: 700;
+  font-size: 3.5rem;
+  letter-spacing: 0.05em;
+  color: #00d8ff;
+  margin-bottom: 0.4rem;
+}
+
+/* Slogan */
+.slogan {
+  font-weight: 500;
+  font-size: 1.3rem;
+  color: #64d2ff;
+  margin-bottom: 2rem;
+  font-style: italic;
+  letter-spacing: 0.02em;
+}
+
+/* Text */
+p {
+  font-weight: 400;
+  font-size: 1.1rem;
+  line-height: 1.6;
+  color: #cfd8dc;
+  margin-bottom: 1.8rem;
+}
+
+p.important {
+  font-weight: 700;
+  font-size: 1.2rem;
+  color: #00d8ff;
+}
+
+/* Responsive */
+@media (max-width: 480px) {
+  h1 {
+    font-size: 2.5rem;
+  }
+
+  .slogan {
+    font-size: 1.1rem;
+  }
+
+  p {
+    font-size: 1rem;
+  }
+
+  .nav-btn {
+    min-width: auto;
+    padding: 0.4rem 1rem;
+    font-size: 0.9rem;
+  }
+}
+
+

@@ -47,7 +47,7 @@ export const supplements = {
   },
 
   protein: {
-    name: "Protein (Whey/Vegan)",
+    name: "Protein",
     zielgruppen: ["sportler", "vegetarier", "veganer"],
     einheit: "g",
     faktor: (user) => {

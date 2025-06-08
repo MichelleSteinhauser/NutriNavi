@@ -3,10 +3,20 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
   <title>Supplement Rechner</title>
-  <link rel="stylesheet" href="style.css" />
+  <link rel="stylesheet" href="rechner.css" />
 </head>
 <body>
+  <nav class="main-nav">
+  <a href="index.html" class="nav-btn active">NutriNavi</a>
+  <a href="infos.html" class="nav-btn">Boost-Info-Center</a>
+  <a href="rechner.html" class="nav-btn">Gainulator</a>
+  </nav>
+
+    <div class="calculator-container">
+    <h1>Gainulator</h1>
+    <p class="intro">Finde mit wenigen Klicks heraus, welche Supplements du wirklich brauchst - basierend auf deinem Lebensstil und deinen Zielen.</p>
 
   <form id="rechnerForm">
     <label>Geschlecht:</label>
@@ -55,19 +65,24 @@
       <option value="wenig">Selten / fast nie</option>
     </select>
 
-    <label>Welche dieser Gruppen treffen auf dich zu?</label><br>
-    <input type="checkbox" name="zielgruppen" value="sportler"> Sportler/in<br>
-    <input type="checkbox" name="zielgruppen" value="senioren"> Senior/in<br>
-    <input type="checkbox" name="zielgruppen" value="veganer"> Veganer/in<br>
-    <input type="checkbox" name="zielgruppen" value="vegetarier"> Vegetarier/in<br>
-    <input type="checkbox" name="zielgruppen" value="bueromensch"> Büromensch<br>
-    <input type="checkbox" name="zielgruppen" value="schueler_studenten"> Schüler/Student/in<br>
-    <input type="checkbox" name="zielgruppen" value="gesundheitsbewusst"> Gesundheitsbewusst<br>
-    <input type="checkbox" name="zielgruppen" value="stressgeplagte"> Stressgeplagt<br>
-    <input type="checkbox" name="zielgruppen" value="schlafgestoerte"> Schlafgestört<br>
+<label>Welche dieser Gruppen treffen auf dich zu?</label>
+<div class="checkbox-group">
+  <label><input type="checkbox" name="zielgruppen" value="sportler"> Sportler/-in</label>
+  <label><input type="checkbox" name="zielgruppen" value="senioren"> Senior/-in</label>
+  <label><input type="checkbox" name="zielgruppen" value="veganer"> Veganer/-in</label>
+  <label><input type="checkbox" name="zielgruppen" value="vegetarier"> Vegetarier/-in</label>
+  <label><input type="checkbox" name="zielgruppen" value="bueromensch"> Büromensch</label>
+  <label><input type="checkbox" name="zielgruppen" value="schueler_studenten"> Jugendliche / Junge Erwachsene</label>
+  <label><input type="checkbox" name="zielgruppen" value="gesundheitsbewusst"> Gesundheitsbewusst</label>
+  <label><input type="checkbox" name="zielgruppen" value="stressgeplagte"> Stressgeplagt</label>
+  <label><input type="checkbox" name="zielgruppen" value="schlafgestoerte"> Schlafgestört</label>
+</div>
+
+
 
     <button type="submit">Bedarf berechnen</button>
   </form>
+    </div>
 
   <script src="supplements.js"></script>
   <script type="module" src="rechner.js"></script>

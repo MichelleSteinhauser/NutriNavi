@@ -1,0 +1,220 @@
+/* ==== GRUNDSTIL ==== */
+body {
+  font-family: 'Montserrat', sans-serif;
+  background-color: #121212;
+  margin: 0;
+  padding: 0;
+  color: #e0e0e0;
+}
+
+.calculator-container {
+  max-width: 600px;
+  margin: 40px auto;
+  padding: 2rem;
+  background-color: rgba(0, 216, 255, 0.1); /* leichtes Cyan-Glühen */
+  box-shadow: 0 4px 12px rgba(0, 216, 255, 0.2);
+  border-radius: 12px;
+  text-align: center;
+  box-sizing: border-box;
+  border: 1.5px solid #00d8ff;
+}
+
+h1 {
+  font-size: 2.5rem;
+  color: #00d8ff;
+  margin-bottom: 0.5rem;
+  font-weight: 700;
+  letter-spacing: 0.05em;
+}
+
+.intro {
+  font-size: 1rem;
+  color: #64d2ff;
+  margin-bottom: 2rem;
+  line-height: 1.5;
+  font-weight: 500;
+  font-style: italic;
+}
+
+form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+}
+
+form label {
+  margin-top: 1rem;
+  font-weight: 600;
+  width: 100%;
+  text-align: left;
+  color: #a0e7ff;
+}
+
+form input,
+form select {
+  padding: 0.5rem;
+  margin-top: 0.3rem;
+  width: 100%;
+  border: 1.5px solid #00d8ff;
+  border-radius: 6px;
+  font-size: 1rem;
+  box-sizing: border-box;
+  background-color: #1e1e1e;
+  color: #e0e0e0;
+  transition: border-color 0.3s ease;
+}
+
+form input:focus,
+form select:focus {
+  outline: none;
+  border-color: #64d2ff;
+  box-shadow: 0 0 6px #64d2ff;
+}
+
+.checkbox-group {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+  max-width: 400px;
+  margin: 2rem auto 0;
+}
+
+button[type="submit"] {
+  margin-top: 2rem;
+  padding: 0.8rem 1.6rem;
+  background-color: #00a0cc;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  font-weight: 700;
+  font-size: 1rem;
+  transition: background-color 0.3s ease;
+  box-shadow: 0 0 8px #00a0cc;
+}
+
+button[type="submit"]:hover {
+  background-color: #0083a8;
+  box-shadow: 0 0 12px #0083a8;
+}
+
+/* ==== RESPONSIVE DESIGN ==== */
+@media (max-width: 768px) {
+  .calculator-container {
+    padding: 1.5rem;
+    margin: 20px auto;
+  }
+
+  h1 {
+    font-size: 2rem;
+  }
+
+  .intro {
+    font-size: 0.95rem;
+  }
+
+  button[type="submit"] {
+    width: 100%;
+  }
+}
+
+@media (max-width: 480px) {
+  .calculator-container {
+    padding: 1rem;
+  }
+
+  h1 {
+    font-size: 1.6rem;
+  }
+
+  .intro {
+    font-size: 0.9rem;
+  }
+
+  form label {
+    font-size: 0.95rem;
+  }
+
+  form input,
+  form select {
+    font-size: 0.95rem;
+  }
+
+  button[type="submit"] {
+    font-size: 0.95rem;
+    padding: 0.7rem 1rem;
+  }
+}
+
+/* Checkbox Styling */
+.checkbox-group label {
+  display: flex;
+  align-items: center;
+  gap: 0.3rem;
+  margin-bottom: 0.8rem;
+  font-weight: 400;
+  cursor: pointer;
+  color: #a0e7ff;
+}
+
+.checkbox-group input[type="checkbox"] {
+  margin: 0;
+  width: 18px;
+  height: 18px;
+  accent-color: #00d8ff; /* moderne Checkbox-Farbe */
+  cursor: pointer;
+  border-radius: 4px;
+  border: 1.5px solid #00d8ff;
+  background-color: #1e1e1e;
+}
+
+.main-nav {
+  display: flex;
+  justify-content: center;
+  gap: 1.5rem;
+  margin-bottom: 3rem;
+  flex-wrap: wrap; /* lässt Buttons umbrechen, falls zu schmal */
+  padding: 0 1rem;
+}
+
+.nav-btn {
+  background-color: transparent;
+  border: 2px solid #00d8ff;
+  color: #00d8ff;
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 600;
+  font-size: 1rem;
+  padding: 0.5rem 1.5rem;
+  border-radius: 30px;
+  cursor: pointer;
+  transition: background-color 0.3s ease, color 0.3s ease;
+  min-width: 130px;
+  text-align: center;
+}
+
+.nav-btn:hover {
+  background-color: #00d8ff;
+  color: #121212;
+}
+
+.nav-btn.active {
+  background-color: #00a0cc;
+  color: #121212;
+  border-color: #00a0cc;
+}
+
+/* Responsive Anpassungen */
+@media (max-width: 480px) {
+  .nav-btn {
+    min-width: auto;
+    flex: 1 1 100%; /* Buttons nehmen volle Breite ein */
+    font-size: 0.9rem;
+    padding: 0.6rem 1rem;
+  }
+
+  .main-nav {
+    margin-bottom: 2rem;
+  }
+}
