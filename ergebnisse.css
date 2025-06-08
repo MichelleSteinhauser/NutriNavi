@@ -36,26 +36,25 @@ h1 {
   font-style: italic;
 }
 
-form {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  width: 100%;
-}
-
-form label {
+/* Zentrierung für Labels und Selects */
+form label,
+label {
   margin-top: 1rem;
   font-weight: 600;
   width: 100%;
-  text-align: left;
+  text-align: center; /* zentriert */
   color: #a0e7ff;
+  display: block;
 }
 
-form input,
-form select {
+form select,
+select {
   padding: 0.5rem;
   margin-top: 0.3rem;
   width: 100%;
+  max-width: 350px;
+  margin-left: auto;
+  margin-right: auto;
   border: 1.5px solid #00d8ff;
   border-radius: 6px;
   font-size: 1rem;
@@ -63,15 +62,37 @@ form select {
   background-color: #1e1e1e;
   color: #e0e0e0;
   transition: border-color 0.3s ease;
+  cursor: pointer;
+  display: block; /* wichtig für margin auto */
 }
 
-form input:focus,
-form select:focus {
+form select:focus,
+select:focus {
   outline: none;
   border-color: #64d2ff;
   box-shadow: 0 0 6px #64d2ff;
 }
 
+/* Textzentrierung für Ergebnis-Absätze */
+form p,
+p {
+  text-align: center;
+  font-weight: 600;
+  color: #e0e0e0;
+  margin: 0;
+}
+
+/* Wrapper für Text + Label + Select */
+.centered-group {
+  display: flex;
+  flex-direction: column;
+  align-items: center; /* zentriert horizontal */
+  gap: 0.5rem;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+/* Checkbox Styling */
 .checkbox-group {
   display: flex;
   flex-direction: column;
@@ -81,74 +102,6 @@ form select:focus {
   margin: 2rem auto 0;
 }
 
-button[type="submit"] {
-  margin-top: 2rem;
-  padding: 0.8rem 1.6rem;
-  background-color: #00a0cc;
-  color: white;
-  border: none;
-  border-radius: 8px;
-  cursor: pointer;
-  font-weight: 700;
-  font-size: 1rem;
-  transition: background-color 0.3s ease;
-  box-shadow: 0 0 8px #00a0cc;
-}
-
-button[type="submit"]:hover {
-  background-color: #0083a8;
-  box-shadow: 0 0 12px #0083a8;
-}
-
-/* ==== RESPONSIVE DESIGN ==== */
-@media (max-width: 768px) {
-  .calculator-container {
-    padding: 1.5rem;
-    margin: 20px auto;
-  }
-
-  h1 {
-    font-size: 2rem;
-  }
-
-  .intro {
-    font-size: 0.95rem;
-  }
-
-  button[type="submit"] {
-    width: 100%;
-  }
-}
-
-@media (max-width: 480px) {
-  .calculator-container {
-    padding: 1rem;
-  }
-
-  h1 {
-    font-size: 1.6rem;
-  }
-
-  .intro {
-    font-size: 0.9rem;
-  }
-
-  form label {
-    font-size: 0.95rem;
-  }
-
-  form input,
-  form select {
-    font-size: 0.95rem;
-  }
-
-  button[type="submit"] {
-    font-size: 0.95rem;
-    padding: 0.7rem 1rem;
-  }
-}
-
-/* Checkbox Styling */
 .checkbox-group label {
   display: flex;
   align-items: center;
@@ -163,19 +116,20 @@ button[type="submit"]:hover {
   margin: 0;
   width: 18px;
   height: 18px;
-  accent-color: #00d8ff; /* moderne Checkbox-Farbe */
+  accent-color: #00d8ff;
   cursor: pointer;
   border-radius: 4px;
   border: 1.5px solid #00d8ff;
   background-color: #1e1e1e;
 }
 
+/* Navigation */
 .main-nav {
   display: flex;
   justify-content: center;
   gap: 1.5rem;
   margin-bottom: 3rem;
-  flex-wrap: wrap; /* lässt Buttons umbrechen, falls zu schmal */
+  flex-wrap: wrap;
   padding: 0 1rem;
 }
 
@@ -205,11 +159,80 @@ button[type="submit"]:hover {
   border-color: #00a0cc;
 }
 
-/* Responsive Anpassungen */
+/* Button zurück */
+#zurueck {
+  margin-top: 2rem;
+  padding: 0.8rem 1.6rem;
+  background-color: #00a0cc;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  font-weight: 700;
+  font-size: 1rem;
+  transition: background-color 0.3s ease;
+  box-shadow: 0 0 8px #00a0cc;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  max-width: 200px;
+}
+
+#zurueck:hover {
+  background-color: #0083a8;
+  box-shadow: 0 0 12px #0083a8;
+}
+
+/* ==== RESPONSIVE DESIGN ==== */
+@media (max-width: 768px) {
+  .calculator-container {
+    padding: 1.5rem;
+    margin: 20px auto;
+  }
+
+  h1 {
+    font-size: 2rem;
+  }
+
+  .intro {
+    font-size: 0.95rem;
+  }
+
+  #zurueck {
+    width: 100%;
+    max-width: none;
+  }
+}
+
 @media (max-width: 480px) {
+  .calculator-container {
+    padding: 1rem;
+  }
+
+  h1 {
+    font-size: 1.6rem;
+  }
+
+  .intro {
+    font-size: 0.9rem;
+  }
+
+  label {
+    font-size: 0.95rem;
+  }
+
+  select {
+    font-size: 0.95rem;
+  }
+
+  #zurueck {
+    font-size: 0.95rem;
+    padding: 0.7rem 1rem;
+  }
+
   .nav-btn {
     min-width: auto;
-    flex: 1 1 100%; /* Buttons nehmen volle Breite ein */
+    flex: 1 1 100%;
     font-size: 0.9rem;
     padding: 0.6rem 1rem;
   }

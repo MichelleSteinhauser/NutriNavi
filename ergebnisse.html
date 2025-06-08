@@ -3,21 +3,25 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600&display=swap" rel="stylesheet" />
   <title>Supplement Ergebnisse</title>
   <link rel="stylesheet" href="ergebnisse.css" />
 </head>
 <body>
-      <nav class="main-nav">
-  <a href="index.html" class="nav-btn active">NutriNavi</a>
-  <a href="infos.html" class="nav-btn">Boost-Info-Center</a>
-  <a href="rechner.html" class="nav-btn">Gainulator</a>
+  <nav class="main-nav">
+    <a href="index.html" class="nav-btn active">NutriNavi</a>
+    <a href="infos.html" class="nav-btn">Boost-Info-Center</a>
+    <a href="rechner.html" class="nav-btn">Gainulator</a>
   </nav>
 
-  <h1>Dein Supplementbedarf</h1>
-  <p>Kleiner Reminder: Manche der Lebensmittel-Vorschläge klingen vielleicht nach einem XXL-Workout für deinen Magen. 12 Bananen oder 1 Kilo Rindfleisch sind definitiv kein Snack für zwischendurch! 😅 Die Alternativen zeigen dir, wie du deinen Supplementbedarf theoretisch auch über natürliche Lebensmittel decken könntest, aber bitte immer mit gesundem Menschenverstand.</p>
-  <div id="ergebnisse"></div>
-  <button id="zurueck">Zurück zum Rechner</button>
+  <div class="calculator-container">
+    <h1>Dein Supplementbedarf</h1>
+    <p class="intro">Kleiner Reminder: Manche der Lebensmittel-Vorschläge klingen vielleicht nach einem XXL-Workout für deinen Magen. 12 Bananen oder 1 Kilo Rindfleisch sind definitiv kein Snack für zwischendurch! Die Alternativen zeigen dir, wie du deinen Supplementbedarf theoretisch auch über natürliche Lebensmittel decken könntest, aber bitte immer mit gesundem Menschenverstand.</p>
+    
+    <div id="ergebnisse"></div>
+    
+    <button id="zurueck">Zurück zum Rechner</button>
+  </div>
 
   <script>
     document.addEventListener("DOMContentLoaded", () => {
@@ -26,10 +30,10 @@
       // Lade die gespeicherten Ergebnisse aus localStorage
       const ergebnisse = JSON.parse(localStorage.getItem("supplementErgebnisse")) || [];
 
-      ergebnisDiv.innerHTML = "<h3>Dein Supplementbedarf:</h3>";
+      ergebnisDiv.innerHTML = "<h3 style='text-align:center; margin-bottom: 1rem;'>Dein Supplementbedarf:</h3>";
 
       if (ergebnisse.length === 0) {
-        ergebnisDiv.innerHTML += "<p>Keine relevanten Supplements gefunden.</p>";
+        ergebnisDiv.innerHTML += "<p style='text-align:center;'>Keine relevanten Supplements gefunden.</p>";
         return;
       }
 
@@ -61,10 +65,10 @@
         }
 
         ergebnisDiv.innerHTML += `
-          <div class="supplement-erg" style="margin-bottom: 1em;">
+          <div class="supplement-erg centered-group" style="margin-bottom: 1.5rem;">
             <p><strong>${supp.name}:</strong> ${supp.menge} ${supp.einheit}</p>
             ${options ? `
-              <label for="alt-${supp.name}">Entspricht:</label>
+              <label for="alt-${supp.name}">Enthält:</label>
               <select id="alt-${supp.name}">
                 ${options}
               </select>
@@ -73,7 +77,6 @@
         `;
       });
 
-      // Optional: Event-Listener für Dropdowns
       ergebnisDiv.querySelectorAll("select").forEach(select => {
         select.addEventListener("change", (event) => {
           console.log("Gewählte Alternative:", event.target.value);
@@ -88,6 +91,3 @@
 
 </body>
 </html>
-
-
-
